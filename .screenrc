@@ -1,0 +1,22 @@
+# Left pane: tree_rs
+screen -t exe/tree_rs exe/tree_rs
+
+# Split vertically: left | right
+split -v
+focus right
+
+# Split right pane horizontally: top-right | bottom-right
+split
+focus top
+focus right
+
+# Top-right pane: nano
+screen -t nano nano
+
+# Bottom-right pane: bash
+focus bottom
+screen -t bash bash
+
+# Start in left pane
+focus top
+focus right
