@@ -4,8 +4,7 @@ use notify::{Config, Error, RecommendedWatcher, Watcher};
 use std::path::Path;
 use std::sync::mpsc::channel;
 
-// this code is similar to how windows tree /f /a works
-// but simplified for demonstration purposes
+// this code is similar to how "tree /f /a" works on Windows
 fn draw_tree(dir: &Path, prefix: &str) {
     if dir.is_dir() {
         let entries: Vec<_> = std::fs::read_dir(dir)
@@ -15,17 +14,21 @@ fn draw_tree(dir: &Path, prefix: &str) {
         let count = entries.len();
         for (i, entry) in entries.iter().enumerate() {
             let path = entry.path();
+
             let is_last = i == count - 1;
             let new_prefix = if is_last {
                 format!("{}    ", prefix)
             } else {
                 format!("{}│   ", prefix)
             };
+
+            println!("{}└── {}", prefix, entry.file_name().to_string_lossy());
             if path.is_dir() {
-                println!("{}└── {}", prefix, entry.file_name().to_string_lossy());
+                // If the folder is .git, then skip it
+                if entry.file_name() == ".git" {
+                    continue;
+                }
                 draw_tree(&path, &new_prefix);
-            } else {
-                println!("{}└── {}", prefix, entry.file_name().to_string_lossy());
             }
         }
     }
