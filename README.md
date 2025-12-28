@@ -1,4 +1,4 @@
-# TUI Editor
+# splitmind
 
 ## Dependencies
 1. Install `screen`:
@@ -20,10 +20,9 @@
     screen -c .screenrc
     ```
 2. To switch to the next window,
-    ```
-    Ctrl + A, Ctrl + T
-    ```
-    * In other words, press and hold Ctrl, press A then release, then press T then release, all while holding Ctrl
+    * Press and hold Ctrl, then follow the next steps while holding Ctrl.
+    * Press A then release A.
+    * Press T then release T
 
 3. To open a new file in `nano` with syntax highlighting:
     * `Ctrl+R`, then release both keys
